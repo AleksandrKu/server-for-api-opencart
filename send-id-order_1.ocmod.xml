@@ -1,0 +1,28 @@
+   <modification>
+    <name>Send Id order 2</name>
+    <code>Send Id order 2</code>
+    <version>1.0</version>
+    <author>DoWell</author>
+    <link>http://www.dowell.com.ua</link>
+
+    <file path="catalog/controller/checkout/success.php">
+        <operation>
+            <search><![CDATA[
+            if (isset($this->session->data['order_id'])) {
+            ]]></search>
+            <add position="after"><![CDATA[
+         /* well start  */
+          $get_order_id = $this->session->data['order_id'];
+$token = "TOKEN";
+                $service_url = 'http://forpractise/server/get.php?shop=' . HTTP_SERVER . '&order_id=' . $get_order_id . '&version_op=' . VERSION . '&token=' . $token;
+
+            $curl_get = curl_init($service_url);
+            curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, true);
+            $curl_response = curl_exec($curl_get);
+            curl_close($curl_get);
+            
+            /* well end  */
+            ]]></add>  
+            </operation>
+    </file>
+</modification>

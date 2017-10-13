@@ -1,0 +1,34 @@
+<?xml version="2.0" encoding="utf-8"?>
+   <modification>
+    <name>Send Id order</name>
+    <code>Send Id order</code>
+    <version>1.0</version>
+    <author>DoWell</author>
+    <link>http://www.dowell.com.ua</link>
+
+    <file path="catalog/controller/checkout/success.php">
+        <operation>
+            <search><![CDATA[
+            if (isset($this->session->data['order_id'])) {
+            ]]></search>
+            <add position="after"><![CDATA[
+         /* well start  */
+           
+            $this->load->model('extension/module_uniorder');
+            $token = $this->model_extension_module_uniorder->getTokenByModuleName('uniorder');
+            $get_order_id = $this->session->data['order_id'];
+            if ($token) {
+                $service_url = 'http://forpractise/server/get.php?shop=' . HTTP_SERVER . '&order_id=' . $get_order_id . '&version_op=' . VERSION . '&token=' . $token;
+            } else {
+                $service_url = 'http://forpractise/server/get.php?shop=' . HTTP_SERVER . '&order_id=' . $get_order_id . '&version_op=' . VERSION . '&token=no_token';
+            }
+            $curl_get = curl_init($service_url);
+            curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, true);
+            $curl_response = curl_exec($curl_get);
+            curl_close($curl_get);
+            
+            /* well end  */
+            ]]></add>  
+            </operation>
+    </file>
+</modification>

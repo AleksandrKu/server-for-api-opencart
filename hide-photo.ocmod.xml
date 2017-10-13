@@ -1,0 +1,27 @@
+<modification>
+    <name>Hide photo</name>
+    <code>Hide photo</code>
+    <version>1.0</version>
+    <author>DoWell</author>
+    <link>http://www.dowell.com.ua</link>
+    <file path="catalog/view/theme/theme765/template/common/home.tpl">
+        <operation>
+            <search><![CDATA[
+            <?php echo $header; ?>
+            ]]></search>
+            <add position="after"><![CDATA[
+            <!-- well   -->
+				<div id="bronzecast-man" class="hidden" style="position: fixed;z-index:999999;    top: 15%;    left: 30px">
+                    <img style="cursor:pointer" src="image/catalog/bronzecast-man.jpg"  alt="" >
+                </div>
+			<script>(function () {
+			$(window).on('load', function () {
+			$('#bronzecast-man').removeClass('hidden');
+			});
+			$("#bronzecast-man").click( function() {  $("#bronzecast-man").hide("slow"); } );
+			})();</script>
+            <!-- well -->
+            ]]></add>  
+            </operation>
+    </file>
+</modification>
