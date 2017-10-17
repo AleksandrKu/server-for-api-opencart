@@ -6,7 +6,7 @@
 </style>
 </head>
 <body>
-
+<span><a target="_blank" href="http://forpractise/server/uniorder_get_orders.php">Orders</a></span>
 <form action="/server/get.php">
     <select name="site">
         <option value="all">All</option>
@@ -15,7 +15,7 @@
     </select>
     <input type="submit" value="Показать">
 </form>
-<br>
+
 
 <?php
 $site = $_GET['site'];
